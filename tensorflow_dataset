@@ -1,0 +1,41 @@
+import tensorflow as tf
+
+# Define the directory containing your organized dataset
+dataset_dir = 'G:/peethon/archive (1)/Indian Food Images/Indian Food Images'
+
+# Define batch size
+batch_size = 32
+
+# Create TensorFlow datasets
+train_dataset = tf.keras.preprocessing.image_dataset_from_directory(
+    dataset_dir,
+    labels='inferred',
+    label_mode='int',
+    batch_size=batch_size,
+    validation_split=0.2,  # Adjust validation split as needed
+    subset='training',
+    seed=123,
+)
+
+val_dataset = tf.keras.preprocessing.image_dataset_from_directory(
+    dataset_dir,
+    labels='inferred',
+    label_mode='int',
+    batch_size=batch_size,
+    validation_split=0.2,  # Adjust validation split as needed
+    subset='validation',
+    seed=123,
+)
+
+test_dataset = tf.keras.preprocessing.image_dataset_from_directory(
+    dataset_dir,
+    labels='inferred',
+    label_mode='int',
+    batch_size=batch_size,
+)
+
+
+# Optionally, you can prefetch data for better performance
+train_dataset = train_dataset.prefetch(buffer_size=tf.data.experimental.AUTOTUNE)
+val_dataset = val_dataset.prefetch(buffer_size=tf.data.experimental.AUTOTUNE)
+test_dataset = test_dataset.prefetch(buffer_size=tf.data.experimental.AUTOTUNE)
