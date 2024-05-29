@@ -1,2 +1,2 @@
 # FINT
-food image and nutritional factor
+food image and nutritional tracker
